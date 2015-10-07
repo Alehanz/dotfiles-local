@@ -1,0 +1,7 @@
+[user]
+  user = Alexey Zabelin
+  email = zabelin.alex@gmail.com
+[commit]
+  template = ~/.gitmessage
+[credential]
+  helper = osxkeychain

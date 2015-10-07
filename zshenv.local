@@ -1,0 +1,15 @@
+# tmuxifier
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+
+# NeoVim
+export PATH="$HOME/neovim/bin:$PATH"
+
+# Notmuch.py for searching with Mutt
+export PATH="$HOME/mutt-notmuch-py:$PATH"
+
+# Chrome script
+export PATH="$HOME/chrome:$PATH"
+
+# Rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

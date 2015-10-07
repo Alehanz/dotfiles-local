@@ -1,0 +1,49 @@
+" Remove trailing whitespace
+nnoremap <Leader>tw :%s/\s\+$//e<CR>
+
+" Rspec and Tslime settings
+let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
+
+let g:rspec_runner = "os_x_iterm"
+
+" Color scheme
+syntax enable
+set background=dark
+colorscheme solarized
+
+" Enable truecolors
+" let &t_8f="\e[38;2;%ld;%ld;%ldm"
+" let &t_8b="\e[48;2;%ld;%ld;%ldm"
+" set guicolors
+
+" Default font size
+set guifont=Inconsolata\ for\ Powerline:h16
+
+" LiteDFM keybinding
+nnoremap <Leader>z :LiteDFMToggle<CR>
+
+" Escape insert mode quickly
+imap jj <Esc>
+
+" Easymotion settings for h j k l
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+
+" Tabular settings
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
+" vim2hs disable folding
+let g:haskell_conceal = 0
+let g:haskell_conceal_enumerations = 0
+
+" disable folding all over
+set nofoldenable

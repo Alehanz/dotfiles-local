@@ -1,0 +1,88 @@
+# --- colors (solarized dark)
+# default statusbar colors
+set -g status-bg black
+set -g status-fg yellow
+set -g status-attr default
+
+# default window title colors
+setw -g window-status-fg brightblue
+setw -g window-status-bg default
+
+# active window title colors
+setw -g window-status-current-fg yellow
+setw -g window-status-current-bg default
+setw -g window-status-current-attr dim
+
+# pane border
+set -g pane-border-fg black
+set -g pane-border-bg default
+set -g pane-active-border-fg yellow
+set -g pane-active-border-bg default
+
+# command line/message text
+set -g message-bg black
+set -g message-fg yellow
+
+# pane number display
+set -g display-panes-active-colour yellow
+set -g display-panes-colour brightblue
+
+# color theme
+# set -g default-terminal "screen-256color"
+# set -g terminal-overrides 'xterm:colors=256'
+
+# clock
+set-window-option -g clock-mode-colour green #green
+
+# Battery
+set -g status-right "%l:%M %p - %d %b %Y - #(battery -t -p)"
+
+# Reload hotkey
+bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
+
+# Split hotkeys
+unbind %
+bind v split-window -h
+unbind "
+bind o split-window -v
+
+# Fix Neovim ESC issue
+set -sg escape-time 0
+
+# List of plugins
+# Supports `github_username/repo` or full git repo URLs
+set -g @tpm_plugins '              \
+  tmux-plugins/tpm                 \
+  tmux-plugins/tmux-sensible       \
+'
+
+set -g @tpm_plugins "          \
+  tmux-plugins/tpm             \
+  tmux-plugins/tmux-open       \
+"
+# Other examples:
+# github_username/plugin_name    \
+# git@github.com/user/plugin     \
+# git@bitbucket.com/user/plugin  \
+
+# Initializes TMUX plugin manager.
+# Keep this line at the very bottom of tmux.conf.
+run-shell '~/.tmux/plugins/tpm/tpm'
+
+# Use UTF-8
+set -g utf8
+set-window-option -g utf8 on
+
+# Reattach to user namespace
+set-option -g default-command "reattach-to-user-namespace -l zsh"
+
+# Change prefix
+set -g prefix2 C-a
+
+# Setup 'v' to begin selection as in Vim
+bind-key -t vi-copy v begin-selection
+bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
+
+# Update default binding of `Enter` to also use copy-pipe
+unbind -t vi-copy Enter
+bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
