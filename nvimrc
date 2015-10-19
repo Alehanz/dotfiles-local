@@ -8,9 +8,6 @@ if !has('gui_running')
     augroup END
 endif
 
-" TrueColor support
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
 " Leader
 let mapleader = " "
 
@@ -24,12 +21,6 @@ set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-"if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-"  syntax on
-"endif
 
 if filereadable(expand("~/.nvimrc.bundles"))
   source ~/.nvimrc.bundles
@@ -74,18 +65,6 @@ set expandtab
 
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
 
 " Make it obvious where 80 characters is
 set textwidth=80
@@ -146,6 +125,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
 " Temporary fix for <C-h>
 if has('nvim')
     nmap <BS> <C-W>h
@@ -165,7 +145,66 @@ set diffopt+=vertical
 " Tmuxline config
 let g:tmuxline_preset = 'crosshair'
 
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-  source ~/.vimrc.local
+" Remove trailing whitespace
+nnoremap <Leader>tw :%s/\s\+$//e<CR>
+
+" Rspec and Tslime settings
+let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
+
+let g:rspec_runner = "os_x_iterm"
+
+" Color scheme
+syntax enable
+set background=dark
+colorscheme solarized
+
+" Default font size
+set guifont=Inconsolata\ for\ Powerline:h16
+
+" LiteDFM keybinding
+nnoremap <Leader>z :LiteDFMToggle<CR>
+
+" Escape insert mode quickly
+imap jj <Esc>
+
+" Easymotion settings for h j k l
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+
+" Tabular settings
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
+
+" vim2hs disable folding
+let g:haskell_conceal = 0
+let g:haskell_conceal_enumerations = 0
+
+" disable folding all over
+set nofoldenable
+
+" FZF command
+nnoremap <c-p> :FZF<cr>
+
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" Default fzf layout
+let g:fzf_layout = { 'down': '40%' }
+
+" Advanced customization using autoload functions
+autocmd VimEnter * command! Colors
+  \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
+
+" nohl mapping
+nnoremap <C-n> :nohl<CR>

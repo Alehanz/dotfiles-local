@@ -11,13 +11,9 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-" Enable truecolors
-" let &t_8f="\e[38;2;%ld;%ld;%ldm"
-" let &t_8b="\e[48;2;%ld;%ld;%ldm"
-" set guicolors
-
 " Default font size
 set guifont=Inconsolata\ for\ Powerline:h16
+" set guifont=Ubuntu\ Mono\ derivative\ Powerline:h16
 
 " LiteDFM keybinding
 nnoremap <Leader>z :LiteDFMToggle<CR>
@@ -47,3 +43,6 @@ let g:haskell_conceal_enumerations = 0
 
 " disable folding all over
 set nofoldenable
+
+" make sure indentation is working
+filetype plugin indent on

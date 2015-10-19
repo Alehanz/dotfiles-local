@@ -2,7 +2,6 @@ call plug#begin('~/.nvim/plugged')
 
 Plug 'christoomey/vim-run-interactive'
 Plug 'kchmck/vim-coffee-script'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'scrooloose/syntastic'
 Plug 'slim-template/vim-slim'
@@ -19,13 +18,14 @@ Plug 'vim-scripts/ctags.vim'
 Plug 'vim-scripts/matchit.zip'
 Plug 'vim-scripts/tComment'
 Plug 'jgdavey/tslime.vim'
-Plug 'rizzatti/dash.vim'
 Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'tpope/vim-vinegar'
-Plug 'dag/vim2hs'
 Plug 'godlygeek/tabular'
-Plug 'eagletmt/neco-ghc'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'dag/vim2hs'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
